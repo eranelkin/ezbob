@@ -1,0 +1,38 @@
+.search-header {
+  padding-top: 50px;
+}
+.search-content {
+  position: absolute;
+  width: 90%;
+  top: 290px;
+  height: calc(100% - 320px);
+  overflow-y: scroll;
+}
+
+.search-link {
+  font-size: 24px;
+  padding: 10px 0;
+}
+.search-container {
+  margin: 40px 60px;
+  height: 100%;
+  overflow: scroll;
+}
+.image-item {
+  width: 170px;
+  height: 140px;
+  padding: 10px;
+}
+.images-title {
+  font-size: 24px;
+  padding: 10px 0;
+  font-weight: bolder;
+  margin: 0px 25px;
+  color: #bdc1c6;
+}
+.images {
+  width: fit-content;
+  border: 1px solid #3c4043;
+  border-radius: 8px;
+  margin-left: 20px;
+}
