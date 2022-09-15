@@ -9,13 +9,6 @@ import mockData from "./mock/mockData";
 
 const SearchContext = createContext();
 
-const asyncFetch = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(mockData);
-    }, 1500);
-  });
-};
 export const SearchProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +18,7 @@ export const SearchProvider = ({ children }) => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await asyncFetch();
+        const data = mockData;
 
         setData(data);
         setIsLoading(false);

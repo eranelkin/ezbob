@@ -22,9 +22,9 @@ const Search = () => {
   } = useSearch();
   const { currentFocus, changeCurrentFocus, resetCurrentFocus } =
     useItemActive();
-
   const searchRef = createRef();
   const autoCompleteRef = createRef();
+
   const searchItemsData =
     data &&
     selectedSearchKey &&
@@ -73,14 +73,15 @@ const Search = () => {
         changeCurrentFocus(autoCompleteRef, ev.keyCode === 40);
     }
     if (ev.keyCode === 13) {
-      const currentValue = currentFocus
-        ? autoCompleteRef.current.children[currentFocus].innerText
-        : searchRef.current.value;
+      const currentValue =
+        currentFocus !== null
+          ? autoCompleteRef.current.children[currentFocus].children[0].innerText
+          : searchRef.current.value.trim();
       setSelectedSearchKey(currentValue);
       updateHistory(currentValue);
       if (currentFocus !== null) {
         searchRef.current.value =
-          autoCompleteRef.current.children[currentFocus].innerText;
+          autoCompleteRef.current.children[currentFocus].children[0].innerText;
       }
       resetCurrentFocus();
     }
@@ -106,7 +107,7 @@ const Search = () => {
             type="text"
             className="search-input"
             placeholder={translations.search.placeholder}
-            onBlur={() => toggleAutoComplete(false)}
+            // onBlur={() => toggleAutoComplete(false)}
             onKeyUp={customDebounce((ev) => InputIsReady(ev))}
             onKeyDown={handlerSearchKeyDown}
           />
@@ -132,7 +133,7 @@ const Search = () => {
                     position: "absolute",
                     color: "red",
                   }}
-                  onClick={handlerRemoveFromHistory(item)}
+                  onMouseDown={handlerRemoveFromHistory(item)}
                 >
                   {translations.search.remove}
                 </div>
